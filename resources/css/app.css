@@ -1,3 +1,12 @@
+/* Tailwind’s layers */
 @tailwind base;
 @tailwind components;
+
+/* Your custom components here (if any) */
+/* @layer components { … } */
+
+/* Bootstrap’s CSS */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Tailwind utilities */
 @tailwind utilities;
