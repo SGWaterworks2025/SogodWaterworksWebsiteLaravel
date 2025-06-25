@@ -10,3 +10,6 @@
 
 /* Tailwind utilities */
 @tailwind utilities;
+
+/* keep all .dev-only elements hidden */
+.dev-only { display: none !important; }

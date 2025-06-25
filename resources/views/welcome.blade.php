@@ -19,36 +19,22 @@
             </style>
         @endif
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
-                        >
-                            Log in
-                        </a>
 
-                        @if (Route::has('register'))
-                            <a
-                                href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                                Register
-                            </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-        </header>
+    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] min-h-screen">
+
+
+
+
+<header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
+</header>
+
+
+
+
+
+
+
+
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
                 <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
@@ -133,5 +119,132 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+
+
+
+  <!-- Place this OUTSIDE the flex layout! -->
+
+<!-- Dev Console and Toggle Button -->
+<!-- Dev Console and Toggle Button -->
+<!-- Dev Console and Toggle Button -->
+<!-- Console + Toggle Button Container -->
+<!-- Console + Toggle Button Container -->
+<!-- Console + Toggle Button Container -->
+<!-- Console + Toggle Button Container -->
+<!-- Container pinned to bottom right -->
+<!-- Console Toggle + Input: Right-Aligned -->
+<!-- Console + Toggle: Aligned to bottom-right -->
+<!-- Console + Toggle: Aligned to bottom-right -->
+<!-- Console + Toggle: Aligned to bottom-right -->
+<!-- Console + Toggle: Aligned to bottom-right and hidden until hover -->
+<div id="dev-wrapper" class="fixed bottom-5 right-5 z-50 flex items-end gap-2 group">
+  <!-- Input Box (expands to the left of the button) -->
+  <div
+    id="dev-console"
+    class="hidden bg-gray-900 bg-opacity-95 rounded shadow-lg px-2 py-1"
+  >
+    <input
+      id="dev-input"
+      type="text"
+      placeholder="Type your destiny."
+      class="bg-white text-black px-2 py-1 w-48 text-xs rounded outline-none leading-tight"
+      style="font-family: monospace;"
+    />
+  </div>
+
+  <!-- Toggle Button (initially hidden, shown on hover or when console has input) -->
+  <button
+    id="dev-toggle-btn"
+    class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg focus:outline-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    title="Admin Console"
+  >
+    <!-- Gear SVG Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 45.779 45.779" fill="#000000">
+      <path d="M37.426,2.633H8.362C3.746,2.633,0,6.369,0,10.985v17.003c0,4.615,3.747,8.344,8.362,8.344h18.48l3.902,5.604
+        c0.527,0.756,1.39,1.209,2.311,1.211c0.92,0.002,1.785-0.443,2.314-1.197l4.129-5.865c3.611-0.924,6.281-4.198,6.281-8.098V10.985
+        C45.779,6.369,42.042,2.633,37.426,2.633z M15.431,22.203c-1.505,0-2.726-1.215-2.726-2.717c0-1.499,1.221-2.716,2.726-2.716
+        c1.506,0,2.726,1.217,2.726,2.716C18.157,20.988,16.937,22.203,15.431,22.203z M22.894,22.203c-1.505,0-2.726-1.215-2.726-2.717
+        c0-1.499,1.221-2.716,2.726-2.716c1.506,0,2.725,1.217,2.725,2.716C25.619,20.988,24.4,22.203,22.894,22.203z M30.357,22.203
+        c-1.506,0-2.727-1.215-2.727-2.717c0-1.499,1.221-2.716,2.727-2.716s2.726,1.217,2.726,2.716
+        C33.083,20.988,31.863,22.203,30.357,22.203z"/>
+    </svg>
+  </button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Inline script — no @\push/@\stack needed -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const consoleEl = document.getElementById('dev-console');
+    const toggleBtn = document.getElementById('dev-toggle-btn');
+    const inputEl = document.getElementById('dev-input');
+    const wrapper = document.getElementById('dev-wrapper');
+
+    let hasInput = false;
+
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = !consoleEl.classList.contains('hidden');
+      consoleEl.classList.toggle('hidden');
+      if (!isOpen) inputEl.focus();
+    });
+
+    inputEl.addEventListener('input', function () {
+      hasInput = this.value.trim().length > 0;
+      toggleBtn.classList.add('opacity-100');
+    });
+
+    inputEl.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        const cmd = this.value.trim().toLowerCase();
+        this.value = '';
+        hasInput = false;
+        consoleEl.classList.add('hidden');
+        toggleBtn.classList.remove('opacity-100');
+
+        if (cmd === 'login') {
+          window.location.href = "{{ route('login') }}";
+        } else if (cmd === 'register') {
+          window.location.href = "{{ route('register') }}";
+        } else {
+          inputEl.placeholder = `Unknown command: ${cmd}`;
+        }
+      }
+    });
+
+    wrapper.addEventListener('mouseenter', () => {
+      toggleBtn.classList.add('opacity-100');
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      if (!hasInput && document.activeElement !== inputEl) {
+        toggleBtn.classList.remove('opacity-100');
+        consoleEl.classList.add('hidden');
+      }
+    });
+
+    window.addEventListener('keydown', e => {
+      if (e.key === '`') {
+        toggleBtn.click();
+        e.preventDefault();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+
     </body>
 </html>
