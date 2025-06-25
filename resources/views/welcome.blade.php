@@ -137,28 +137,33 @@
 <!-- Console + Toggle: Aligned to bottom-right -->
 <!-- Console + Toggle: Aligned to bottom-right -->
 <!-- Console + Toggle: Aligned to bottom-right and hidden until hover -->
-<div id="dev-wrapper" class="fixed bottom-5 right-5 z-50 flex items-end gap-2 group">
-  <!-- Input Box (expands to the left of the button) -->
+<!-- Console + Toggle: Aligned to bottom-right and hidden until hover -->
+<!-- Console + Toggle: Aligned to bottom-right and always visible 10px above screen edge -->
+<!-- Console + Toggle: Always visible in bottom-right corner -->
+<!-- Console + Toggle: Always visible in bottom-right corner -->
+<!-- Console + Toggle: Permanently visible in bottom-left corner -->
+<div id="dev-wrapper" class="fixed bottom-2 left-2 z-[9999] flex items-end gap-2 pointer-events-none max-w-[calc(100vw-1rem)]">
+  <!-- Input Box (expands to the right of the button) -->
   <div
     id="dev-console"
-    class="hidden bg-gray-900 bg-opacity-95 rounded shadow-lg px-2 py-1"
+    class="hidden bg-gray-900/95 rounded-lg shadow-xl px-3 py-2 pointer-events-auto min-w-0 flex-shrink backdrop-blur-sm order-2"
   >
     <input
       id="dev-input"
       type="text"
       placeholder="Type your destiny."
-      class="bg-white text-black px-2 py-1 w-48 text-xs rounded outline-none leading-tight"
-      style="font-family: monospace;"
+      class="bg-white text-black px-2 py-1 text-xs rounded outline-none leading-tight border-none w-full min-w-[8rem]"
+      style="font-family: 'Courier New', monospace;"
     />
   </div>
 
-  <!-- Toggle Button (initially hidden, shown on hover or when console has input) -->
+  <!-- Toggle Button (permanently visible) -->
   <button
     id="dev-toggle-btn"
-    class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg focus:outline-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-    title="Admin Console"
+    class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg focus:outline-none opacity-100 transition-all duration-300 pointer-events-auto flex-shrink-0 touch-manipulation order-1"
+    title="Admin Console (Press ` to toggle)"
   >
-    <!-- Gear SVG Icon -->
+    <!-- Enhanced Gear SVG Icon -->
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 45.779 45.779" fill="#000000">
       <path d="M37.426,2.633H8.362C3.746,2.633,0,6.369,0,10.985v17.003c0,4.615,3.747,8.344,8.362,8.344h18.48l3.902,5.604
         c0.527,0.756,1.39,1.209,2.311,1.211c0.92,0.002,1.785-0.443,2.314-1.197l4.129-5.865c3.611-0.924,6.281-4.198,6.281-8.098V10.985
@@ -171,6 +176,199 @@
   </button>
 </div>
 
+<style>
+/* Console positioning - permanently in bottom-left */
+#dev-wrapper {
+  /* Ensure it's always above other fixed elements */
+  z-index: 999999 !important;
+  /* Always in bottom-left corner */
+  position: fixed !important;
+  bottom: 0.5rem !important;
+  left: 0.5rem !important;
+  /* Prevent going off-screen */
+  max-width: calc(100vw - 1rem);
+  /* Ensure it's always visible */
+  min-width: fit-content;
+}
+
+#dev-console {
+  /* Expand to the right since button is on left */
+  max-width: calc(100vw - 4rem);
+  width: 200px;
+  transform-origin: left center;
+  animation: slideInRight 0.2s ease-out;
+}
+
+#dev-console.hidden {
+  display: none !important;
+}
+
+#dev-input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Slide in from left animation */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Button is always visible and styled */
+#dev-toggle-btn {
+  background-color: #ffffff !important;
+  border: 2px solid #e5e7eb;
+  cursor: pointer;
+  opacity: 1 !important; /* Always visible */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+#dev-toggle-btn:hover {
+  background-color: #f8f9fa !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  transform: scale(1.05);
+}
+
+#dev-toggle-btn:active {
+  background-color: #f3f4f6 !important;
+  transform: scale(0.95);
+}
+
+/* Responsive adjustments for different screen sizes */
+@media (max-width: 768px) {
+  #dev-wrapper {
+    bottom: 0.5rem !important;
+    left: 0.5rem !important;
+  }
+
+  #dev-console {
+    width: 160px;
+    max-width: calc(100vw - 3rem);
+  }
+
+  #dev-toggle-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  #dev-wrapper {
+    bottom: 0.5rem !important;
+    left: 0.5rem !important;
+  }
+
+  #dev-console {
+    width: 140px;
+    max-width: calc(100vw - 2.5rem);
+    padding: 0.5rem;
+  }
+
+  #dev-input {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #dev-wrapper {
+    bottom: 0.25rem !important;
+    left: 0.25rem !important;
+  }
+
+  #dev-console {
+    width: 120px;
+    max-width: calc(100vw - 2rem);
+  }
+
+  #dev-toggle-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+@media (max-width: 400px) {
+  #dev-wrapper {
+    bottom: 0.25rem !important;
+    left: 0.25rem !important;
+  }
+
+  #dev-console {
+    width: 110px;
+    max-width: calc(100vw - 1.75rem);
+  }
+
+  #dev-toggle-btn {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  #dev-input {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
+@media (max-width: 360px) {
+  #dev-wrapper {
+    bottom: 0.25rem !important;
+    left: 0.25rem !important;
+  }
+
+  #dev-console {
+    width: 100px;
+    max-width: calc(100vw - 1.5rem);
+  }
+
+  #dev-toggle-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+/* Ensure adequate touch targets on touch devices */
+@media (pointer: coarse) {
+  #dev-toggle-btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* Ensure visibility on very small screens */
+@media (max-height: 500px) {
+  #dev-wrapper {
+    bottom: 0.25rem !important;
+  }
+}
+
+@media (max-height: 400px) {
+  #dev-wrapper {
+    bottom: 0.125rem !important;
+  }
+
+  #dev-toggle-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -182,62 +380,243 @@
 
 
     <!-- Inline script — no @\push/@\stack needed -->
+<!-- Enhanced JavaScript implementation -->
+<!-- Enhanced JavaScript implementation -->
+<!-- Enhanced JavaScript implementation -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const consoleEl = document.getElementById('dev-console');
-    const toggleBtn = document.getElementById('dev-toggle-btn');
-    const inputEl = document.getElementById('dev-input');
-    const wrapper = document.getElementById('dev-wrapper');
+document.addEventListener('DOMContentLoaded', function () {
+  const consoleEl = document.getElementById('dev-console');
+  const toggleBtn = document.getElementById('dev-toggle-btn');
+  const inputEl = document.getElementById('dev-input');
+  const wrapper = document.getElementById('dev-wrapper');
 
-    let hasInput = false;
+  let hasInput = false;
+  let isConsoleOpen = false;
+  let isHovered = false;
+  let hideTimeout = null;
 
-    toggleBtn.addEventListener('click', () => {
-      const isOpen = !consoleEl.classList.contains('hidden');
-      consoleEl.classList.toggle('hidden');
-      if (!isOpen) inputEl.focus();
-    });
+  // Show button function
+  function showButton() {
+    clearTimeout(hideTimeout);
+    toggleBtn.classList.remove('opacity-0');
+    toggleBtn.classList.add('opacity-100');
+  }
 
-    inputEl.addEventListener('input', function () {
-      hasInput = this.value.trim().length > 0;
-      toggleBtn.classList.add('opacity-100');
-    });
+  // Hide button function (with delay) - also closes console
+  function hideButton(immediate = false) {
+    if (hasInput || isConsoleOpen || document.activeElement === inputEl) {
+      return; // Don't hide if console is active
+    }
 
-    inputEl.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
-        const cmd = this.value.trim().toLowerCase();
-        this.value = '';
-        hasInput = false;
-        consoleEl.classList.add('hidden');
-        toggleBtn.classList.remove('opacity-100');
-
-        if (cmd === 'login') {
-          window.location.href = "{{ route('login') }}";
-        } else if (cmd === 'register') {
-          window.location.href = "{{ route('register') }}";
-        } else {
-          inputEl.placeholder = `Unknown command: ${cmd}`;
+    clearTimeout(hideTimeout);
+    if (immediate) {
+      toggleBtn.classList.remove('opacity-100');
+      toggleBtn.classList.add('opacity-0');
+      // Close console when button disappears
+      consoleEl.classList.add('hidden');
+      isConsoleOpen = false;
+    } else {
+      hideTimeout = setTimeout(() => {
+        if (!isHovered && !hasInput && !isConsoleOpen && document.activeElement !== inputEl) {
+          toggleBtn.classList.remove('opacity-100');
+          toggleBtn.classList.add('opacity-0');
+          // Close console when button disappears
+          consoleEl.classList.add('hidden');
+          isConsoleOpen = false;
         }
-      }
-    });
+      }, 1000); // 1 second delay
+    }
+  }
 
-    wrapper.addEventListener('mouseenter', () => {
-      toggleBtn.classList.add('opacity-100');
-    });
+  // Toggle console visibility
+  function toggleConsole() {
+    isConsoleOpen = !consoleEl.classList.contains('hidden');
 
-    wrapper.addEventListener('mouseleave', () => {
-      if (!hasInput && document.activeElement !== inputEl) {
-        toggleBtn.classList.remove('opacity-100');
-        consoleEl.classList.add('hidden');
+    if (isConsoleOpen) {
+      // Closing console
+      consoleEl.classList.add('hidden');
+      isConsoleOpen = false;
+      if (!hasInput && !isHovered) {
+        hideButton();
       }
-    });
+    } else {
+      // Opening console - always show button first
+      showButton();
+      consoleEl.classList.remove('hidden');
+      isConsoleOpen = true;
+      // Small delay to ensure smooth animation
+      setTimeout(() => {
+        inputEl.focus();
+        inputEl.select();
+      }, 150);
+    }
+  }
 
-    window.addEventListener('keydown', e => {
-      if (e.key === '`') {
-        toggleBtn.click();
-        e.preventDefault();
-      }
-    });
+  // Button click handler with better event handling
+  toggleBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleConsole();
   });
+
+  // Touch events for mobile
+  toggleBtn.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    showButton();
+    toggleBtn.classList.add('button-hover');
+  });
+
+  toggleBtn.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    setTimeout(() => {
+      toggleBtn.classList.remove('button-hover');
+    }, 150);
+    toggleConsole();
+  });
+
+  // Mouse events for desktop
+  toggleBtn.addEventListener('mouseenter', function() {
+    toggleBtn.classList.add('button-hover');
+  });
+
+  toggleBtn.addEventListener('mouseleave', function() {
+    toggleBtn.classList.remove('button-hover');
+  });
+
+  // Input change handler
+  inputEl.addEventListener('input', function () {
+    hasInput = this.value.trim().length > 0;
+    if (hasInput) {
+      showButton();
+    }
+  });
+
+  // Enhanced command processing
+  inputEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      const cmd = this.value.trim().toLowerCase();
+      const originalPlaceholder = this.placeholder;
+
+      this.value = '';
+      hasInput = false;
+      consoleEl.classList.add('hidden');
+      isConsoleOpen = false;
+
+      // Process commands
+      if (cmd === 'login') {
+        window.location.href = "{{ route('login') }}";
+      } else if (cmd === 'register') {
+        window.location.href = "{{ route('register') }}";
+      } else if (cmd === 'help') {
+        inputEl.placeholder = 'Available: login, register, help';
+        setTimeout(() => {
+          inputEl.placeholder = originalPlaceholder;
+        }, 3000);
+      } else if (cmd === '') {
+        // Empty command, just close
+        hideButton();
+      } else {
+        inputEl.placeholder = `Unknown: ${cmd}. Try 'help'`;
+        setTimeout(() => {
+          inputEl.placeholder = originalPlaceholder;
+        }, 3000);
+      }
+
+      hideButton();
+    } else if (e.key === 'Escape') {
+      // Close console on Escape
+      consoleEl.classList.add('hidden');
+      isConsoleOpen = false;
+      hasInput = false;
+      this.value = '';
+      inputEl.blur();
+      hideButton();
+    }
+  });
+
+  // Wrapper mouse events
+  wrapper.addEventListener('mouseenter', () => {
+    isHovered = true;
+    showButton();
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    isHovered = false;
+    // Only hide if console is not open
+    if (!isConsoleOpen && !hasInput && document.activeElement !== inputEl) {
+      hideButton();
+    }
+  });
+
+  // Input focus/blur events
+  inputEl.addEventListener('focus', () => {
+    showButton();
+  });
+
+  inputEl.addEventListener('blur', () => {
+    if (!hasInput && !isHovered) {
+      hideButton();
+    }
+  });
+
+  // Global keyboard shortcut (backtick) with better detection
+  document.addEventListener('keydown', function(e) {
+    // Check if backtick is pressed and not in an input field
+    if (e.key === '`' && !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey) {
+      const activeElement = document.activeElement;
+      const isInInputField = activeElement && (
+        activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA' ||
+        activeElement.isContentEditable
+      );
+
+      // Only trigger if not typing in an input field (except our own console input)
+      if (!isInInputField || activeElement === inputEl) {
+        toggleConsole();
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }
+  });
+
+  // Handle clicks outside to close console
+  document.addEventListener('click', function(e) {
+    if (!wrapper.contains(e.target) && isConsoleOpen) {
+      consoleEl.classList.add('hidden');
+      isConsoleOpen = false;
+      hasInput = false;
+      inputEl.value = '';
+      if (!isHovered) {
+        hideButton(true); // Hide immediately when clicking outside
+      }
+    }
+  });
+
+  // Add a safety check to ensure console closes when button is hidden
+  function ensureConsoleSync() {
+    const buttonVisible = toggleBtn.classList.contains('opacity-100');
+    if (!buttonVisible && isConsoleOpen) {
+      consoleEl.classList.add('hidden');
+      isConsoleOpen = false;
+      hasInput = false;
+      inputEl.value = '';
+    }
+  }
+
+  // Run sync check periodically
+  setInterval(ensureConsoleSync, 500);
+
+  // Initialize - button should be hidden by default
+  toggleBtn.classList.add('opacity-0');
+  toggleBtn.classList.remove('opacity-100');
+  consoleEl.classList.add('hidden');
+  isConsoleOpen = false;
+
+  // Debug: Log screen size changes
+  window.addEventListener('resize', function() {
+    console.log('Screen size:', window.innerWidth, 'x', window.innerHeight);
+  });
+});
 </script>
 
 
